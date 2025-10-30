@@ -16,7 +16,7 @@ jobs:
         uses: carlos-sanchez/webdav-action@v1.4.0
         with:
           local_path: ./
-          remote_path: https://f02e4bf9ee095.ngrok-free.app/remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/
+          remote_path: https://02c4bf9ee095.ngrok-free.app.ngrok-free.app/remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/
           username: ${{ secrets.NEXTCLOUD_USERNAME }}
           password: ${{ secrets.NEXTCLOUD_PASSWORD }}
           exclude: .git* .github*
