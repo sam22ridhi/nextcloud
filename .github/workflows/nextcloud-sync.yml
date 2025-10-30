@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Sync to Nextcloud via WebDAV
-        uses: carlos-sanchez/webdav-action@v1.4.0
+        uses: puppe/webdav-sync@v2.2.0
         with:
+          remote_url: https://02c4bf9ee095.ngrok-free.app/remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/
           local_path: ./
-          remote_path: https://02c4bf9ee095.ngrok-free.app.ngrok-free.app/remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/
-          username: ${{ secrets.NEXTCLOUD_USERNAME }}
-          password: ${{ secrets.NEXTCLOUD_PASSWORD }}
-          exclude: .git* .github*
+          webdav_username: ${{ secrets.NEXTCLOUD_USERNAME }}
+          webdav_password: ${{ secrets.NEXTCLOUD_PASSWORD }}
+          exclude: ".git*,.github*"
