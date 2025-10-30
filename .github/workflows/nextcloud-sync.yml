@@ -1,4 +1,4 @@
-name: Sync to Nextcloud
+name: Sync to Nextcloud (Manual WebDAV)
 
 on:
   push:
@@ -12,12 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Sync to Nextcloud via WebDAV
-        uses: dav-action/upload-webdav@v1
-        with:
-          server: https://02c4bf9ee095.ngrok-free.app
-          username: ${{ secrets.NEXTCLOUD_USERNAME }}
-          password: ${{ secrets.NEXTCLOUD_PASSWORD }}
-          source: ./
-          destination: /remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/
-          exclude: .git*,.github*
+      - name: Create a test file for this demo
+        run: echo "This file was auto-deployed by a GitHub Action at $(date)" > LIVE_DEMO.txt
+
+      - name: Upload file to Nextcloud via WebDAV
+        run: |
+          curl -u "${{ secrets.NEXTCLOUD_USERNAME }}:${{ secrets.NEXTCLOUD_PASSWORD }}" \
+          -T "LIVE_DEMO.txt" \
+          "https://02c4bf9ee095.ngrok-free.app/remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/LIVE_DEMO.txt"
