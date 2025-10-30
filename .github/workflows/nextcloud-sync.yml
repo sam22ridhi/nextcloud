@@ -19,5 +19,4 @@ jobs:
           remote_path: https://f02e4bf9ee095.ngrok-free.app/remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/
           username: ${{ secrets.NEXTCLOUD_USERNAME }}
           password: ${{ secrets.NEXTCLOUD_PASSWORD }}
-          exclude: .git*
-          exclude: .github*
+          exclude: .git* .github*
