@@ -1,0 +1,23 @@
+name: Sync to Nextcloud
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Sync to Nextcloud via WebDAV
+        uses: carlos-sanchez/webdav-action@v1.4.0
+        with:
+          local_path: ./
+          remote_path: https://f02e4bf9ee095.ngrok-free.app/remote.php/dav/files/${{ secrets.NEXTCLOUD_USERNAME }}/Project-Code-Live/
+          username: ${{ secrets.NEXTCLOUD_USERNAME }}
+          password: ${{ secrets.NEXTCLOUD_PASSWORD }}
+          exclude: .git*
+          exclude: .github*
